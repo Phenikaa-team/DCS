@@ -60,7 +60,8 @@ Netflix vận hành một trong những hệ thống phân tán lớn nhất th�
 - **Replication**: Sao lưu phim hot tại nhiều data center.
 
 ## 5. Các mô hình kiến trúc phổ biến
-![Layered Architecture in Distributed Systems](https://media.geeksforgeeks.org/wp-content/uploads/20240806125316/Layered-Architecture-in-Distributed-System-1024.webp)
+
+![Layered Architecture in Distributed Systems](static/images/image.png)
 
 | Lớp (Layer) | Mô tả | Ví dụ |
 |:------------|:------|:------|
