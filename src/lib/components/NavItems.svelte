@@ -5,9 +5,8 @@
 
 <ul>
 	{#each navItems as page}
-	  <NavItem href={page?.route?.startsWith('/') ? page.route : '/'}>
-		{page?.title ?? 'Home'}
-	  </NavItem>
+		<NavItem href={page.route}>
+			{page.title}
+		</NavItem>
 	{/each}
-  </ul>
-  
+</ul>
