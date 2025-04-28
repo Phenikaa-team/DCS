@@ -11,32 +11,12 @@ Hệ thống phân tán **(Distributed System)** là tập hợp nhiều máy t�
 
 # Các ứng dụng của hệ thống phân tán
 
-- **Dịch vụ đám mây**: 
-<img src="https://upload.wikimedia.org/wikipedia/commons/9/93/Amazon_Web_Services_Logo.svg" width="40" style="display:inline; vertical-align:middle; max-width:unset; height:auto;"/> 
-<img src="https://images.icon-icons.com/2699/PNG/512/google_cloud_logo_icon_171058.png" width="40" style="display:inline; vertical-align:middle; max-width:unset; height:auto;"/> 
-<img src="https://images.icon-icons.com/2699/PNG/512/microsoft_azure_logo_icon_168977.png" width="40" style="display:inline; vertical-align:middle; max-width:unset; height:auto;"/>
-
-- **Mạng xã hội**: 
-<img src="https://cdn.icon-icons.com/icons2/642/PNG/512/facebook_icon-icons.com_59205.png" width="40" style="display:inline; vertical-align:middle; max-width:unset; height:auto;"/> 
-<img src="https://images.icon-icons.com/1211/PNG/512/1491580635-yumminkysocialmedia26_83102.png" width="40" style="display:inline; vertical-align:middle; max-width:unset; height:auto;"/> 
-<img src="https://images.icon-icons.com/836/PNG/512/Twitter_icon-icons.com_66803.png" width="40" style="display:inline; vertical-align:middle; max-width:unset; height:auto;"/>
-
-- **Ứng dụng chia sẻ file**: 
-<img src="https://images.icon-icons.com/1195/PNG/512/1490889640-dropbox_82530.png" width="40" style="display:inline; vertical-align:middle; max-width:unset; height:auto;"/> 
-<img src="https://images.icon-icons.com/1011/PNG/512/Google_Drive_icon-icons.com_75713.png" width="40" style="display:inline; vertical-align:middle; max-width:unset; height:auto;"/>
-
-- **Hệ thống thương mại điện tử**: 
-<img src="https://images.icon-icons.com/3915/PNG/96/shopee_logo_icon_249631.png" width="40" style="display:inline; vertical-align:middle; max-width:unset; height:auto;"/> 
-<img src="https://upload.wikimedia.org/wikipedia/commons/9/93/Amazon_Web_Services_Logo.svg" width="40" style="display:inline; vertical-align:middle; max-width:unset; height:auto;"/>
-
-- **Ứng dụng streaming**: 
-<img src="https://images.icon-icons.com/2657/PNG/256/netflix_icon_161073.png" width="40" style="display:inline; vertical-align:middle; max-width:unset; height:auto;"/> 
-<img src="https://seeklogo.com/images/S/spotify-2015-logo-560E071CB7-seeklogo.com.png" width="40" style="display:inline; vertical-align:middle; max-width:unset; height:auto;"/> 
-<img src="https://images.icon-icons.com/195/PNG/256/YouTube_23392.png" width="40" style="display:inline; vertical-align:middle; max-width:unset; height:auto;"/>
-
-- **Blockchain và tiền mã hóa**: 
-<img src="https://images.icon-icons.com/674/PNG/512/bitcoin_icon-icons.com_60538.png" width="40" style="display:inline; vertical-align:middle; max-width:unset; height:auto;"/> 
-<img src="https://seeklogo.com/images/E/ethereum-logo-EC6CDBA45B-seeklogo.com.png" width="40" style="display:inline; vertical-align:middle; max-width:unset; height:auto;"/>
+- **Dịch vụ đám mây**: AWS, Google Cloud, Microsoft Azure
+- **Mạng xã hội**: Facebook, Instagram, Twitter
+- **Ứng dụng chia sẻ file**: Dropbox, Google Drive
+- **Hệ thống thương mại điện tử**: Shopee, Lazada, Amazon
+- **Ứng dụng streaming**: Netflix, Spotify, YouTube
+- **Blockchain và tiền mã hóa**: Bitcoin, Ethereum
 
 # Các khái niệm chính của hệ thống phân tán
 
