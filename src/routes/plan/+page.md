@@ -76,4 +76,4 @@ Sinh viên đề xuất đề tài: **Xây dựng hệ thống bất đồng b�
 
 Vấn đề giải quyết: **Tối ưu hóa hiệu suất hệ thống bằng cách xử lý các công việc nặng ở background, tăng trải nghiệm người dùng và khả năng mở rộng của hệ thống.**
 
-<a href="javascript:history.back()">Quay lại trang trước</a>
+<a href="\">Home</a>
