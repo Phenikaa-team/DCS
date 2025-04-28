@@ -8,15 +8,13 @@
 
 ---
 
-# 1. Hệ thống phân tán là gì?
+## 1. Hệ thống phân tán là gì?
 
 **Hệ thống phân tán** (Distributed System) là tập hợp nhiều máy tính độc lập, được kết nối thông qua mạng và phối hợp hoạt động như **một hệ thống duy nhất** đối với người dùng cuối.  
 
 Người dùng không cần biết phía sau có bao nhiêu máy, cách các máy vận hành hay phân chia dữ liệu ra sao — **trải nghiệm được thống nhất và liền mạch** như chỉ đang sử dụng một hệ thống.
 
----
-
-# 2. Các ứng dụng nổi bật của hệ thống phân tán
+## 2. Các ứng dụng nổi bật của hệ thống phân tán
 
 - **Dịch vụ đám mây**: AWS, Google Cloud, Microsoft Azure
 - **Mạng xã hội**: Facebook, Instagram, Twitter
@@ -25,9 +23,7 @@ Người dùng không cần biết phía sau có bao nhiêu máy, cách các má
 - **Streaming đa phương tiện**: Netflix, Spotify, YouTube
 - **Blockchain và tiền mã hóa**: Bitcoin, Ethereum
 
----
-
-# 3. Các khái niệm cốt lõi
+## 3. Các khái niệm cốt lõi
 
 Hệ thống phân tán vận hành dựa trên các nguyên lý quan trọng:
 
@@ -45,9 +41,7 @@ Hệ thống phân tán vận hành dựa trên các nguyên lý quan trọng:
 | **Load Balancer** (Bộ cân bằng tải) | Phân phối lưu lượng đồng đều giữa các máy chủ. |
 | **Replication** (Nhân bản) | Sao lưu dữ liệu ở nhiều nơi để tăng an toàn và tốc độ truy cập. |
 
----
-
-# 4. Ví dục thực tế
+## 4. Ví dục thực tế
 
 ### **Netflix và hệ thống phân tán**
 
@@ -65,21 +59,17 @@ Netflix vận hành một trong những hệ thống phân tán lớn nhất th�
 - **Load Balancer**: Phân phối truy cập hợp lý đến các server.
 - **Replication**: Sao lưu phim hot tại nhiều data center.
 
----
+## 5. Các mô hình kiến trúc phổ biến
+![Layered Architecture in Distributed Systems](https://media.geeksforgeeks.org/wp-content/uploads/20240806125316/Layered-Architecture-in-Distributed-System-1024.webp)
 
-# 5. Các mô hình kiến trúc phổ biến
+| Lớp (Layer) | Mô tả | Ví dụ |
+|:------------|:------|:------|
+| **Presentation Layer** | Giao diện người dùng; nơi nhận yêu cầu từ người dùng và hiển thị kết quả. | Website frontend, Mobile app UI |
+| **Business Layer** | Xử lý logic nghiệp vụ; thực hiện các quy tắc, quy trình của hệ thống. | Xử lý đặt hàng, xác thực người dùng |
+| **Persistence Layer** | Quản lý giao tiếp với cơ sở dữ liệu; trung gian giữa logic và dữ liệu. | ORM (Hibernate, JPA), Repository pattern |
+| **Database Layer** | Lưu trữ dữ liệu thực tế trong hệ thống; thực hiện truy vấn và cập nhật dữ liệu. | MySQL, MongoDB, PostgreSQL |
 
-| Mô hình | Mô tả | Ví dụ |
-|:--------|:------|:------|
-| **Client-Server** | Client gửi yêu cầu, server xử lý và trả kết quả. | Web browser ↔ Web server |
-| **Peer-to-Peer (P2P)** | Các nút chia sẻ tài nguyên trực tiếp với nhau. | BitTorrent, Blockchain |
-| **Multi-Tier** | Phân tách hệ thống thành nhiều lớp: Presentation, Application, Data. | Web 3-tier app (Frontend ↔ Backend ↔ Database) |
-| **Microservices** | Chia nhỏ ứng dụng thành nhiều dịch vụ độc lập giao tiếp qua API. | Netflix, Uber |
-| **Serverless** | Lập trình viên chỉ cần viết hàm; cloud provider tự quản lý server. | AWS Lambda, Azure Functions |
-
----
-
-# 6. Ví dụ kiến trúc thực tế
+## 6. Ví dụ kiến trúc thực tế
 
 ### **Hệ thống Shopee**
 
@@ -90,8 +80,6 @@ Netflix vận hành một trong những hệ thống phân tán lớn nhất th�
 - **Replication**: Dữ liệu đơn hàng được nhân bản tại nhiều trung tâm dữ liệu.
 - **Scalability**: Vào các ngày sale lớn (11/11, 12/12), Shopee tự động mở rộng hệ thống để phục vụ lượng truy cập tăng vọt.
 
----
+## **Tổng kết**
 
-# **Tổng kết**
-
-Hệ thống phân tán là nền tảng quan trọng cho mọi dịch vụ quy mô lớn hiện nay. Nhờ khả năng mở rộng linh hoạt, chịu lỗi tốt và khả dụng cao, chúng ta có thể truy cập thông tin và dịch vụ nhanh chóng, đáng tin
+> Hệ thống phân tán là nền tảng quan trọng cho mọi dịch vụ quy mô lớn hiện nay. Nhờ khả năng mở rộng linh hoạt, chịu lỗi tốt và khả dụng cao, chúng ta có thể truy cập thông tin và dịch vụ nhanh chóng, đáng tin

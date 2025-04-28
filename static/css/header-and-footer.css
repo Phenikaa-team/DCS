@@ -1,7 +1,26 @@
-header,
-footer {
+header
+, footer {
+	color: var(--darker);
+	display: flex;
+}
+
+
+header {
+	background: linear-gradient(to bottom, var(--lightAccent), transparent);
+	justify-content: space-between;
+	align-items: center;
 	font-family: var(--primaryFont);
 	padding: 2.5rem 2rem;
+}
+
+footer {
+	background: var(--lightAccent);
+	grid-template-columns: 100%;
+	align-items: stretch;
+	text-align: center;
+	position: relative;
+	font-family: var(--primaryFont);
+	padding-bottom: 1rem;  
 }
 
 :where(header, footer) a {
@@ -22,20 +41,8 @@ footer {
 	margin: 0;
 }
 
-:where(header, footer) a:hover {
-	text-decoration: underline;
-}
-
 :where(header, footer) svg {
 	fill: currentColor;
-}
-
-header {
-	background: var(--lightAccent);
-	color: var(--darker);
-	display: flex;
-	justify-content: space-between;
-	align-items: center;
 }
 
 @media (min-width: 48rem) {
