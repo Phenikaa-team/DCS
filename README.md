@@ -1,3 +1,10 @@
+# **Hệ thống phân tán**
+ > Nhóm: Nhóm 16 - Hệ thống phân tán
+ > - Trần Bá Minh Đức ``23010210``
+ > - Đồng Đạo Minh Dũng ``22010299``
+
+ > Ngày: 28/04/2025
+
 # Hệ thống phân tán là gì?
 Hệ thống phân tán **(Distributed System)** là tập hợp nhiều máy tính độc lập kết nối với nhau qua mạng, phối hợp hoạt động như một hệ thống thống nhất đối với người dùng cuối. Người dùng không cần biết bên dưới có bao nhiêu máy, chúng được vận hành ra sao – mọi thứ giống như chỉ có một hệ thống duy nhất.
 
