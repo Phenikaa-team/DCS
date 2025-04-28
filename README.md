@@ -1,230 +1,144 @@
-# SvelteKit static blog starter
+# Hệ thống phân tán là gì?
+Hệ thống phân tán **(Distributed System)** là tập hợp nhiều máy tính độc lập kết nối với nhau qua mạng, phối hợp hoạt động như một hệ thống thống nhất đối với người dùng cuối. Người dùng không cần biết bên dưới có bao nhiêu máy, chúng được vận hành ra sao – mọi thứ giống như chỉ có một hệ thống duy nhất.
 
-This starter contains everything you need to get up and running with
-[SvelteKit](https://kit.svelte.dev/) as a static site generator for your
-Markdown (and Svelte)-powered blog.
-[Check out the demo here](https://sveltekit-static-starter.netlify.app/), or
-view the
-[GitHub repo here](https://github.com/josh-collinsworth/sveltekit-blog-starter).
+## Các ứng dụng của hệ thống phân tán
+ > Dịch vụ đám mây: AWS, Google Cloud, Azure
 
-## Features
+ > Mạng xã hội: Facebook, Instagram, Twitter
 
-- 🎉 **Fully up-to-date with SvelteKit 2 and Svelte 5!**
-- ⚡️ **Super fast static site generation with hydration**. Every route is
-  compiled down to static HTML and routed with (optional) JavaScript, thanks to
-  the SvelteKit static adapter (pre-installed)
-- 📦 **Zero-config preloading** for automatic, fast background preloading of all
-  top-level pages
-- ✍️ **Markdown support** with a pre-configured blog
-  - 📑 **Pagination** included (_can customize posts per page_)
-  - ✅ **Category pages** included
-  - 💬 **Posts JSON API**
-- 📝 **mdsvex** pre-installed--use Svelte components inside Markdown!
-  - 🔗 **Rehype** plugins are included to generate unique heading IDs, for
-    direct linking
-- 📱 **Responsive and accessible defaults**; includes a "skip to content" link
-  and accessible mobile nav menu
-- 🔄 **Page transitions** (_fancy and customizable!_)
-- 🔎 **Basic SEO** for blog posts (_strongly recommend checking that out for
-  yourself, though_)
-- 📰 **RSS feed** set up and ready to go (_though it could also likely benefit
-  from some optimization_); just update `src/lib/config.js`
-- 💈 **Basic CSS ready to use, customize, or remove!** Want to use Sass or
-  Tailwind instead? Just install them!
-  ([Directions for Tailwind can be found here](https://tailwindcss.com/docs/guides/sveltekit).)
-  Prefer to write your own? Delete `static/css` and add your own links in
-  `+layout.svelte`.
-- ℹ️ **Fonts included**. (No more built-in Google tracking.)
+ > Ứng dụng chia sẻ file: Dropbox, Google Drive
 
-## Quick Start
+ > Hệ thống thương mại điện tử: Shopee, Lazada, Amazon
 
-Clone or download
-[this repo](https://github.com/josh-collinsworth/sveltekit-blog-starter), then
-install the dependencies and run the dev server:
+ > Ứng dụng streaming: Netflix, Spotify, YouTube
 
-```
-npx degit https://github.com/josh-collinsworth/sveltekit-blog-starter my-sveltekit-blog
-cd my-sveltekit-blog
-npm install
-npm run dev -- --open
-```
+ > Blockchain và tiền mã hóa: Bitcoin, Ethereum
 
-That should get a dev server up and running (assuming you have npm and Node
-installed already). Any saved changes to components and styles should
-auto-refresh blazingly fast.
+## Các khái niệm chính của hệ thống phân tán
+**Hệ thống phân tán được xây dựng dựa trên các nguyên lý cốt lõi sau:**
 
-Now all you need to do is:
+>**Scalability** (Khả năng mở rộng)
+>
+>**Fault Tolerance** (Khả năng chịu lỗi)
+>
+>**Availability** (Khả dụng)
+>
+>**Transparency** (Tính trong suốt)
+>
+>**Concurrency** (Tính đồng thời)
+>
+>**Parallelism** (Tính song song)
+>
+>**Openness** (Tính mở)
+>
+>**Vertical Scaling** (Mở rộng chiều dọc)
+>
+>**Horizontal Scaling** (Mở rộng chiều ngang)
+>
+>**Load Balancer** (Bộ cân bằng tải)
+>
+>**Replication** (Nhân bản)
 
-- Update the `src/lib/config.js` file
-- Drop your Markdown posts into `src/lib/posts`
-- Optionally, customize the styles in `static/css`
+## Giải thích các thuật ngữ
+- **Scalability** (Khả năng mở rộng)
+Khả năng hệ thống xử lý lượng tải ngày càng lớn bằng cách nâng cấp phần cứng hoặc mở rộng số lượng máy chủ.
 
-GLHF! Details below. 👇
+- **Fault Tolerance** (Khả năng chịu lỗi)
+Hệ thống vẫn tiếp tục hoạt động bình thường ngay cả khi một số thành phần bị lỗi.
 
-(_Feel free to
-[open an issue](https://github.com/josh-collinsworth/sveltekit-blog-starter/issues/new)
-if you come across one._)
+- **Availability** (Khả dụng)
+Khả năng hệ thống sẵn sàng phục vụ người dùng tại mọi thời điểm.
 
-## Customization
+- **Transparency** (Tính trong suốt)
+Người dùng không nhận thấy sự phức tạp bên dưới: chẳng hạn như vị trí của tài nguyên, lỗi phần cứng, quá trình nhân bản dữ liệu.
 
-Be sure to update `src/lib/config.js` to reflect your site's domain,
-preferences, etc. This is also where the nav menu can be updated.
+- **Concurrency** (Tính đồng thời)
+Khả năng nhiều tiến trình hoặc người dùng truy cập tài nguyên hệ thống cùng lúc mà không gây lỗi.
 
-**It's very important to update this file with the specific details of your
-site.** Info from this file is used in your RSS feed and SEO meta tags, so don't
-launch without updating it.
+- **Parallelism** (Tính song song)
+Chạy nhiều tác vụ đồng thời để cải thiện tốc độ xử lý, thường tận dụng nhiều CPU hoặc nhiều máy chủ.
 
-## Adding new posts
+- **Openness** (Tính mở)
+Hệ thống được xây dựng theo các tiêu chuẩn mở, có thể dễ dàng tích hợp thêm thành phần từ bên ngoài.
 
-Adding new posts is as simple as dropping a new `.md` file into `src/lib/posts`.
-New posts will automatically show up on the site, be added to the posts API, and
-any category pages.
+- **Vertical Scaling** (Mở rộng chiều dọc)
+Nâng cấp phần cứng của một máy chủ hiện có (CPU mạnh hơn, RAM nhiều hơn).
 
-A few demo Markdown posts are included, and highlight some of the features of
-this starter. These demo posts can be updated or removed, but it may be best to
-use one as a starting point, just for the frontmatter properties.
+- **Horizontal Scaling** (Mở rộng chiều ngang)
+Thêm nhiều máy chủ mới vào hệ thống để chia tải.
 
-If you want to use other frontmatter properties in the template (or just modify
-the layout), make changes in `src/routes/blog/[post]/+page.svelte`.
+- **Load Balancer** (Bộ cân bằng tải)
+Phân phối lưu lượng truy cập đồng đều tới các máy chủ để tránh quá tải.
 
-⚠️ **Note: posts should have a `date` and an `excerpt` defined in the
-frontmatter.** They're sorted by `date`, and use `excerpt` in page meta tags
-(for SEO, social sharing, etc.) There are also other frontmatter properties used
-to enhance the site experience, like the `coverWidth` and `coverHeight`, which
-are used in the template to reserve space for the image, minimizing cumulative
-layout shift.
+- **Replication** (Nhân bản)
+Sao chép dữ liệu hoặc dịch vụ ra nhiều nơi để tăng khả năng chịu lỗi và hiệu suất truy cập.
 
-The starter will still work without `date` properties in your posts, but the
-sorting won't be right. Similarly, you can have posts without an `excerpt`, but
-your SEO/social previews will be sub-optimal.
+## Ví dụ minh họa
+Ví dụ: Hệ thống Netflix
 
-Also: while there's no link to it by default, `/blog/category` exists as an
-archive of all your post categories.
+Netflix sử dụng hệ thống phân tán để truyền tải nội dung video tới hàng triệu người dùng trên toàn cầu.
 
-### Pagination
+Scalability: Netflix mở rộng hệ thống để đáp ứng nhu cầu người dùng tăng đột biến, nhất là vào các giờ cao điểm.
 
-Pagination automatically kicks in once you have more posts than the
-`postsPerPage` option in `src/lib/config.js`. This means you won't see the
-pagination right away unless you either change `postsPerPage` to a very low
-number, or add several more Markdown files to the `src/lib/posts` folder.
+Fault Tolerance: Nếu một máy chủ phát video bị hỏng, người dùng tự động được chuyển sang máy chủ khác.
 
-**Note:** both the normal `/blog` feed _and_ the category feeds at
-`/category/[category]` are automatically paginated.
+Availability: Người dùng có thể xem phim bất kỳ lúc nào, ở bất kỳ đâu.
 
-### RSS
+Transparency: Người dùng không biết (và không cần biết) nội dung được lưu trữ và truyền tải từ máy chủ nào.
 
-This starter also includes a basic RSS feed. It's very minimal, so you may want
-to tweak it depending on your XML feed needs, but it _does_ work out of the box.
+Concurrency: Hàng triệu người dùng có thể cùng xem video cùng lúc.
 
-Update the `config` details in `src/lib/config.js` to get your site's unique
-info correct. (You could also pull this info in other places, or add to it, to
-keep things consistent, but that's up to you.)
+Parallelism: Các đoạn phim được tải đồng thời từ nhiều nguồn để giảm thời gian buffer.
 
-## CSS
+Openness: Netflix sử dụng tiêu chuẩn HTTP, TCP/IP nên dễ dàng tích hợp với nhiều thiết bị.
 
-**By default, all CSS in this starter is global vanilla CSS.** It's located in
-`static/css` (linked from `+layout.svelte`).
+Vertical Scaling: Netflix nâng cấp phần cứng của các server trọng yếu tại trung tâm dữ liệu.
 
-I didn't use component `<style>` blocks because, while component-based scoped
-CSS is very nice, it can also be hard to track down and update. Since this is a
-starter, I felt it was best to keep all the styles together in one place, and
-let you, the author, decide whether you want to keep them as they are, move to
-scoped CSS instead, or use a mixture.
+Horizontal Scaling: Netflix triển khai thêm nhiều server mới tại nhiều khu vực địa lý.
 
-(_Note: previous versions of this starter came with Sass pre-installed. I've
-removed it now because it seems like vanilla CSS is almost entirely as powerful
-as Sass now anyway, and because it's probably easier for people who want it to
-opt in than for those who don't to opt out_.)
+Load Balancer: Điều phối lượng yêu cầu truy cập đến các server.
 
-## Site navigation menus
+Replication: Các video nổi bật được sao chép tới nhiều data center để người dùng có thể truy cập nhanh chóng.
 
-To add or remove pages from the site's navigation menu (in both the header and
-footer), edit the `navItems` array in `src/lib/config.js`. Items there will be
-automatically added to the main menu in the header and footer, and the mobile
-nav menu. They'll also have proper classes and ARIA attributes to show when
-they're the current page.
+Kiến trúc của hệ thống phân tán
+Các mô hình kiến trúc phổ biến:
 
-## Colors
+1. Client-Server Architecture
+Máy khách (Client) gửi yêu cầu đến máy chủ (Server) để nhận dữ liệu hoặc dịch vụ.
 
-This starter has a default color palette (Credit to
-[coolors.co](https://coolors.co/palettes/trending)) but you can easily override
-those in the CSS. The color variable values can be found in
-`static/css/vars.css`.
+Ví dụ: Web browser và Web server.
 
-## Fonts
+2. Peer-to-Peer (P2P) Architecture
+Tất cả các nút vừa là máy khách vừa là máy chủ, chia sẻ tài nguyên lẫn nhau.
 
-Previously, fonts were loaded from Google Fonts, but now they're hosted locally,
-for moderately better performance and a 100% reduction in tracking.
+Ví dụ: BitTorrent, Blockchain.
 
-The fonts in question are
-[Atkinson Hyperlegible](https://brailleinstitute.org/freefont) by the Braille
-Institute, and [Fira Code](https://github.com/tonsky/FiraCode) by Nikita
-Prokopov. The fonts are open-source; please consider supporting the authors.
+3. Multi-Tier Architecture
+Chia hệ thống thành nhiều lớp (layer): Presentation, Application, Data.
 
-The font files themselves are hosted in `static/fonts`. They are linked from the
-`fonts.css` file, and set in `typography.css`.
+Ví dụ: Ứng dụng web ba tầng (Frontend - Backend - Database).
 
-## Components
+4. Microservices Architecture
+Ứng dụng được chia nhỏ thành nhiều dịch vụ độc lập, giao tiếp qua API.
 
-This starter includes only a handful of structural components, for the header,
-footer, site nav, posts lists (since lists of posts are repeated in several
-locations), and pagination (plus a couple that are actually just SVG icons).
+Ví dụ: Netflix, Uber.
 
-You're welcome and encouraged to create your own (using them in Markdown is
-fun!); I just didn't want to push authors too far in any component direction
-right off the bat.
+5. Serverless Architecture
+Các nhà phát triển viết hàm (function) và triển khai trực tiếp lên nền tảng đám mây, không cần quản lý server.
 
-## Static files
+Ví dụ: AWS Lambda, Azure Functions.
 
-Things that should just live in the site root of the finished site (like a
-`robots.txt` file, favicon, or maybe images) should go in the `static` folder.
-If you link to them, use the root path (e.g., `/images/my.png`, not
-`../static/images/my.png`).
+Ví dụ về kiến trúc hệ thống phân tán
+Ví dụ: Hệ thống Shopee
 
-(Placeholder images credit [Unsplash](https://unsplash.com); photographer names
-are in the file names.)
+Client-Server: App Shopee (client) giao tiếp với server Shopee.
 
-## Building, deploying and hosting
+Multi-Tier: Frontend giao tiếp với backend API, backend API giao tiếp với database.
 
-The build command (from package.json) is simply:
+Microservices: Dịch vụ tìm kiếm, dịch vụ thanh toán, dịch vụ vận chuyển hoạt động độc lập.
 
-```
-npm run build
-```
+Load Balancer: Phân tải truy cập giữa nhiều backend server.
 
-You can use that as your build command if your repo is connected to a host like
-Netlify or Vercel, which automatically deploys.
+Replication: Dữ liệu đơn hàng được nhân bản giữa các trung tâm dữ liệu để đảm bảo an toàn và nhanh chóng.
 
-Or, if you prefer, you can run `npm run build` locally to generate the static
-files. That will result in a `build` folder you can upload anywhere a static
-site can be hosted.
-
-Use `npm run preview` _after_ a build to preview the built site locally.
-
-## Adding Tailwind
-
-[The directions for adding Tailwind can be found in the Tailwind docs, here](https://tailwindcss.com/docs/guides/sveltekit).
-
-The only thing worth noting is: this starter's existing CSS files won't be in
-the Tailwind path after following those steps. You can either just delete them
-and start from scratch; or, you can copy the CSS into your Tailwind `app.css`
-file. (Or, move the CSS files into `src/lib`, and import each one individually.)
-
-It's up to you. Just note that Tailwind automatically applies some defaults, so
-even if you _do_ choose to keep this starter's default styling, your site might
-not look the same after installing Tailwind. (Headings, for example, just look
-like plain text when using Tailwind, unless classes are applied.)
-
-## Further documentation
-
-I assume at least a little bit of knowledge of SvelteKit and/or similar static
-site generators here, but be sure to read
-[the SvelteKit docs](https://kit.svelte.dev/docs) for more info.
-
-## Contributing
-
-I've tried my best to make sure this starter is up to date with the latest
-SvelteKit, but I'm sure improvements can be made. Feel free to
-[visit the repo](https://github.com/josh-collinsworth/sveltekit-blog-starter)
-and submit a pull request, or
-[contact me directly](https://joshcollinsworth.com/contact).
+Scalability: Vào ngày lễ lớn (11/11, 12/12), hệ thống tự động thêm server để đáp ứng lưu lượng cao.
