@@ -41,7 +41,7 @@ Hệ thống phân tán vận hành dựa trên các nguyên lý quan trọng:
 | **Load Balancer** (Bộ cân bằng tải) | Phân phối lưu lượng đồng đều giữa các máy chủ. |
 | **Replication** (Nhân bản) | Sao lưu dữ liệu ở nhiều nơi để tăng an toàn và tốc độ truy cập. |
 
-## 4. Ví dục thực tế
+## 4. Ví dụ thực tế
 
 ### **Netflix và hệ thống phân tán**
 
