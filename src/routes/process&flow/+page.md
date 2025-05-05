@@ -86,7 +86,7 @@
 
 ## **3.** Trường hợp nào nên dùng process, khi nào thì nên dùng cả hai?
 
-![image](static/images/b3.jpg)
+![Anh bai tap 3](/static/images/three.png))
 
 ---
 
