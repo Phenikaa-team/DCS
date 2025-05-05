@@ -86,7 +86,7 @@
 
 ## **3.** Trường hợp nào nên dùng process, khi nào thì nên dùng cả hai?
 
-![Anh bai tap 3](/src/routes/process&flow/assets/three.png)
+![Anh bai tap 3](https://i.imgur.com/BgEM9a0.png)
 
 ---
 
