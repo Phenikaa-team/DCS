@@ -61,7 +61,7 @@ Netflix vận hành một trong những hệ thống phân tán lớn nhất th�
 
 ## 5. Các mô hình kiến trúc phổ biến
 
-![Layered Architecture in Distributed Systems](/images/image.png)
+![Layered Architecture in Distributed Systems](static/images/image.png)
 
 | Lớp (Layer) | Mô tả | Ví dụ |
 |:------------|:------|:------|
