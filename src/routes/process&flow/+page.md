@@ -3,9 +3,8 @@
 ## 📚 Mục lục
 - [1. Kiểm tra hiệu năng máy tính](#1-dựa-vào-bài-học-check-cpu-gpu-ram-giải-thích-về-hiệu-năng-của-máy-tính-mà-em-đang-dùng)
 - [2. Ứng dụng đa luồng / đa tiến trình](#2-các-bài-toán-phổ-biến-và-ứng-dụng-đa-luồng--đa-tiến-trình)
-- [3. Khi nào dùng Thread vs Process](#3-viết-ra-giấy-rồi-chụp-ảnh-liệt-kê-các-trường-hợp-nào-thì-nên-dùng-thread-trường-hợp-nào-nên-dùng-process)
+- [3. Khi nào dùng Thread vs Process](#3-trường-hợp-nào-nên-dùng-process-khi-nào-thì-nên-dùng-cả-hai)
 - [4. Distributed Training của ChatGPT](#4-report--tìm-hiểu-chatgpt-training-tập-dữ-liệu-lớn-bằng-distributed-system-như-thế-nào)
-
 ## **1.** Dựa vào bài học, check CPU, GPU, RAM, giải thích về hiệu năng của máy tính mà em đang dùng?
 
 ### 🧠 CPU:
@@ -85,7 +84,7 @@
 
 ---
 
-## **3.** Viết ra giấy rồi chụp ảnh, liệt kê các trường hợp nào thì nên dùng thread, trường hợp nào nên dùng process, khi nào thì nên dùng cả hai. Viết dưới dạng table và đưa ví dụ các bài toán
+## **3.** Trường hợp nào nên dùng process, khi nào thì nên dùng cả hai?
 
 ![Place Holder1](static/images/b3.jpg)
 ---
