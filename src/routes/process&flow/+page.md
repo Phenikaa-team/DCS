@@ -1,5 +1,11 @@
 # Process And Flow
 
+## 📚 Mục lục
+- [1. Kiểm tra hiệu năng máy tính](#1-dựa-vào-bài-học-check-cpu-gpu-ram-giải-thích-về-hiệu-năng-của-máy-tính-mà-em-đang-dùng)
+- [2. Ứng dụng đa luồng / đa tiến trình](#2-các-bài-toán-phổ-biến-và-ứng-dụng-đa-luồng--đa-tiến-trình)
+- [3. Khi nào dùng Thread vs Process](#3-viết-ra-giấy-rồi-chụp-ảnh-liệt-kê-các-trường-hợp-nào-thì-nên-dùng-thread-trường-hợp-nào-nên-dùng-process)
+- [4. Distributed Training của ChatGPT](#4-report--tìm-hiểu-chatgpt-training-tập-dữ-liệu-lớn-bằng-distributed-system-như-thế-nào)
+
 ## **1.** Dựa vào bài học, check CPU, GPU, RAM, giải thích về hiệu năng của máy tính mà em đang dùng?
 
 ### 🧠 CPU:
@@ -48,22 +54,10 @@
 
 ### 🔍 Đánh giá hiệu năng tổng thể:
 
-- [Máy 1: Trần Bá Minh Đức](#máy-1)
-- [Máy 2: Đồng Đạo Minh	Dũng](#máy-2)
-
-### Máy 1
-- **CPU: Intel Core i5-12500H (12 lõi / 16 luồng, 2.50GHz)** → Rất mạnh mẽ cho hầu hết tác vụ
-- **GPU: Intel Iris Xe / NVIDIA Geoforce RTX 3050 Laptop GPU** → Dùng tốt cho đồ họa tầm trung, chơi game ở mức cao.
-- **RAM: 16GB DDR4** → Phù hợp với đa nhiệm trung, có thể nâng cấp thêm nếu có nhu cầu đa nhiệm cao hơn.
-
-💡 *Kết luận*: Máy của em phù hợp cho học tập và làm việc ở mức trung bình tới cao.
-
-### Máy 2
-- **CPU: Intel Core i5-12500H (12 lõi / 16 luồng, 2.50GHz)** → Rất mạnh mẽ cho hầu hết tác vụ
-- **GPU: Intel Iris Xe / NVIDIA Geoforce RTX 3050 Laptop GPU** → Dùng tốt cho đồ họa tầm trung, chơi game ở mức cao.
-- **RAM: 16GB DDR4** → Phù hợp với đa nhiệm trung, có thể nâng cấp thêm nếu có nhu cầu đa nhiệm cao hơn.
-
-💡 *Kết luận*: Máy của em phù hợp cho học tập và làm việc ở mức trung bình tới cao.
+| Hệ thống         | CPU 🔧               | GPU 🎮                     | RAM 💾     | Đánh giá chung                          |
+| ---------------- | ------------------ | ------------------------ | --------- | --------------------------------------- |
+| **Máy 1 – Đức**  | i5-12500H, 12C/16T | RTX 3050 + Intel Iris Xe | 16GB DDR4 | ✅ Tốt cho học tập, đồ họa nhẹ, coding   |
+| **Máy 2 – Dũng** | i5-12500H, 12C/16T | RTX 3050 + Intel Iris Xe | 8GB DDR4  | ⚠️ Cần nâng RAM, tránh lag khi đa nhiệm |
 
 ---
 
