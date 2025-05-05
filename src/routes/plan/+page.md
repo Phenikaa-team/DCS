@@ -15,28 +15,15 @@ Chúng tôi đề xuất sử dụng thư viện **Celery** để giải quyết
 ---
 
 # Trả lời các câu hỏi
-
 ## 1. Mục đích của thư viện Celery
 
-- **Mục đích:**
-  - Celery là một distributed task queue giúp xử lý các tác vụ bất đồng bộ hoặc chạy theo lịch trình.
-  - Nó cho phép "giao việc" cho worker xử lý các công việc nặng hoặc tốn thời gian, giúp hệ thống phản hồi nhanh hơn.
+| **Tiêu chí**       | **Nội dung**                                                                                                                                   |
+|--------------------|------------------------------------------------------------------------------------------------------------------------------------------------|
+| **Mục đích**       | - Celery là một distributed task queue giúp xử lý các tác vụ bất đồng bộ hoặc chạy theo lịch trình.<br>- Cho phép "giao việc" cho worker.   |
+| **Giải quyết vấn đề** | - Giảm tải cho ứng dụng chính.<br>- Hỗ trợ retry khi tác vụ thất bại.<br>- Quản lý và theo dõi tiến trình công việc dễ dàng.               |
+| **Điểm mạnh**      | - Hỗ trợ nhiều backend: RabbitMQ, Redis, Amazon SQS,...<br>- Tích hợp tốt với Django, Flask, FastAPI.<br>- Hỗ trợ lập lịch (scheduling).<br>- Khả năng mở rộng và phân tán cao. |
+| **Điểm yếu**       | - Cần cài đặt/cấu hình message broker (Redis, RabbitMQ, ...).<br>- Phức tạp nếu triển khai quy mô lớn.<br>- Xử lý timeout/phục hồi task phức tạp. |
 
-- **Giải quyết vấn đề:**
-  - Giảm tải cho ứng dụng chính.
-  - Hỗ trợ retry khi tác vụ thất bại.
-  - Quản lý và theo dõi tiến trình công việc dễ dàng.
-
-- **Điểm mạnh:**
-  - Đa backend hỗ trợ (RabbitMQ, Redis, Amazon SQS,...).
-  - Tích hợp dễ dàng với Django, Flask, FastAPI.
-  - Hỗ trợ scheduling tasks (thực hiện theo lịch).
-  - Khả năng mở rộng và phân tán cao.
-
-- **Điểm yếu:**
-  - Cần cài đặt và cấu hình môi trường message broker (ví dụ Redis hoặc RabbitMQ).
-  - Độ phức tạp cao nếu triển khai trên hệ thống lớn.
-  - Xử lý task timeout/phục hồi cần làm thêm nhiều thủ công nếu task phức tạp.
 
 - **So sánh với framework/thư viện khác:**
 
