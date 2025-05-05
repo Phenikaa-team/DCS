@@ -86,7 +86,8 @@
 
 ## **3.** Trường hợp nào nên dùng process, khi nào thì nên dùng cả hai?
 
-![Place Holder1](static/images/b3.jpg)
+![image](static/images/b3.jpg)
+
 ---
 
 ## **4:** Report – Tìm hiểu ChatGPT training tập dữ liệu lớn bằng Distributed System như thế nào
