@@ -1,4 +1,4 @@
-# **HỆ ThỐng Phân Tán**
+# **Hệ Thống Phân Tán**
 
 > **Nhóm 16 - Hệ thống phân tán**  
 > - Trần Bá Minh Đức – `23010210`  

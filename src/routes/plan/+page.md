@@ -56,7 +56,7 @@ Chúng tôi đề xuất sử dụng thư viện **Celery** để giải quyết
 
 ## 2. Kế hoạch dự kiến cho bài giữa kỳ
 
-**Đề tài:** Xây dựng hệ thống bất đồng bộ gửi email xác thực tài khoản người dùng với Celery + Redis.
+**Đề tài:** Xây dựng hệ thống bất đồng bộ gửi email xác thực tài khoản người dùng với Celery + RabbitMQ.
 
 **Bài toán:**
 - Khi người dùng đăng ký, hệ thống gửi email xác nhận.
@@ -64,7 +64,7 @@ Chúng tôi đề xuất sử dụng thư viện **Celery** để giải quyết
 
 **Chi tiết:**
 - Backend sử dụng Python Flask hoặc Django.
-- Task Queue: Redis.
+- Task Queue: RabbitMQ.
 - Celery worker đảm nhiệm gửi email.
 - Có dashboard giám sát task (Flower hoặc Celery events).
 
