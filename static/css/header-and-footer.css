@@ -6,7 +6,7 @@ header
 
 
 header {
-	background: linear-gradient(to bottom, var(--lightAccent), transparent);
+	background: linear-gradient(to top, var(--lightAccent), transparent);
 	justify-content: space-between;
 	align-items: center;
 	font-family: var(--primaryFont);

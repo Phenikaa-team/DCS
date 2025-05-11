@@ -1,3 +1,7 @@
+<svelte:head>
+	<title>Process & Flow</title>
+</svelte:head>
+
 # Process And Flow
 
 ## 📚 Mục lục
