@@ -3,7 +3,7 @@
 import grpc
 import warnings
 
-import service_pb2 as service__pb2
+import hello_pb2 as hello__pb2
 
 GRPC_GENERATED_VERSION = '1.71.0'
 GRPC_VERSION = grpc.__version__
@@ -18,7 +18,7 @@ except ImportError:
 if _version_not_supported:
     raise RuntimeError(
         f'The grpc package installed is at version {GRPC_VERSION},'
-        + f' but the generated code in service_pb2_grpc.py depends on'
+        + f' but the generated code in hello_pb2_grpc.py depends on'
         + f' grpcio>={GRPC_GENERATED_VERSION}.'
         + f' Please upgrade your grpc module to grpcio>={GRPC_GENERATED_VERSION}'
         + f' or downgrade your generated code using grpcio-tools<={GRPC_VERSION}.'
@@ -36,8 +36,8 @@ class HelloServiceStub(object):
         """
         self.SayHello = channel.unary_unary(
                 '/example.HelloService/SayHello',
-                request_serializer=service__pb2.HelloRequest.SerializeToString,
-                response_deserializer=service__pb2.HelloResponse.FromString,
+                request_serializer=hello__pb2.HelloRequest.SerializeToString,
+                response_deserializer=hello__pb2.HelloResponse.FromString,
                 _registered_method=True)
 
 
@@ -55,8 +55,8 @@ def add_HelloServiceServicer_to_server(servicer, server):
     rpc_method_handlers = {
             'SayHello': grpc.unary_unary_rpc_method_handler(
                     servicer.SayHello,
-                    request_deserializer=service__pb2.HelloRequest.FromString,
-                    response_serializer=service__pb2.HelloResponse.SerializeToString,
+                    request_deserializer=hello__pb2.HelloRequest.FromString,
+                    response_serializer=hello__pb2.HelloResponse.SerializeToString,
             ),
     }
     generic_handler = grpc.method_handlers_generic_handler(
@@ -84,8 +84,8 @@ class HelloService(object):
             request,
             target,
             '/example.HelloService/SayHello',
-            service__pb2.HelloRequest.SerializeToString,
-            service__pb2.HelloResponse.FromString,
+            hello__pb2.HelloRequest.SerializeToString,
+            hello__pb2.HelloResponse.FromString,
             options,
             channel_credentials,
             insecure,
