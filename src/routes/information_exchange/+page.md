@@ -66,52 +66,7 @@ connection.close()
 > Đã chọn: **RabbitMQ**
 
 **Ý tưởng**: Một hệ thống gửi email giả lập, trong đó một tiến trình gửi yêu cầu gửi email vào hàng đợi, một tiến trình khác xử lý và "gửi" email.
-
-### 1. Cài đặt môi trường
-
-```bash
-pip install pika
-```
-
-### 2. Producer (Gửi yêu cầu)
-
-```python
-# email_producer.py
-import pika
-
-connection = pika.BlockingConnection(pika.ConnectionParameters('localhost'))
-channel = connection.channel()
-
-channel.queue_declare(queue='emails')
-
-for i in range(5):
-    message = f'Gửi email đến user{i}@example.com'
-    channel.basic_publish(exchange='', routing_key='emails', body=message)
-    print('Đã gửi:', message)
-
-connection.close()
-```
-
-### 3. Consumer (Xử lý yêu cầu)
-
-```python
-# email_consumer.py
-import pika
-
-connection = pika.BlockingConnection(pika.ConnectionParameters('localhost'))
-channel = connection.channel()
-
-channel.queue_declare(queue='emails')
-
-def callback(ch, method, properties, body):
-    print("Xử lý:", body.decode())
-
-channel.basic_consume(queue='emails', on_message_callback=callback, auto_ack=True)
-
-print('Đang đợi email...')
-channel.start_consuming()
-```
-
+[Project](https://github.com/Phenikaa-team/DCS/tree/Email-Queue)
 ---
 
 ## **Bài 3:** RPC sử dụng JSON – Tìm hiểu và demo
