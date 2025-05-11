@@ -1,64 +1,80 @@
-# gRPC Hello World
+# Email Queue System using RabbitMQ 📨
 
-Đây là một ví dụ đơn giản về cách sử dụng **gRPC** trong Python để xây dựng một server và client. Dự án bao gồm hai phần chính:
+Một hệ thống đơn giản sử dụng RabbitMQ để gửi và xử lý email thông qua mô hình Producer-Consumer bằng Python.
 
-1. **gRPC Server**: Xử lý các yêu cầu từ client và gửi phản hồi.
-2. **gRPC Client**: Gửi yêu cầu tới server và nhận phản hồi.
+---
 
-## Cấu trúc Dự án
+## 🚀 Mục tiêu
 
-```css
-grpc-json-demo/
-│
-├── hello_pb2.py          # Tập tin chứa các định nghĩa proto (generated code)
-├── hello_pb2_grpc.py     # Tập tin chứa stub và các phương thức gRPC (generated code)
-└──HelloServicer.py      # Tập tin server (gRPC server và client)
-```
+- Sử dụng RabbitMQ để gửi và nhận dữ liệu giữa các tiến trình.
+- Tách biệt rõ ràng giữa producer (gửi email) và consumer (xử lý email).
+- Thực hành kiến trúc hàng đợi sử dụng thư viện `pika`.
 
+---
 
-## Yêu Cầu
-
-Trước khi chạy ứng dụng, bạn cần cài đặt các phụ thuộc sau:
+## 📦 Yêu cầu
 
 - Python 3.x
-- grpcio
-- grpcio-tools
+- Docker (để chạy RabbitMQ)
+- Thư viện Python: `pika`
 
-## Cài đặt
-
-### 1. Cài đặt các thư viện cần thiết:
-
+Cài đặt thư viện:
 ```bash
-pip install grpcio grpcio-tools
+pip install pika
 ```
---- 
-### 2. Tạo các file hello_pb2.py và hello_pb2_grpc.py từ file .proto của bạn:
-
-```bash
-python -m grpc_tools.protoc -I. --python_out=. --grpc_python_out=. hello.proto
-```
----
-
-## Cách sử dụng
-### 1. Chạy Server
-   Chạy file HelloServicer.py để khởi tạo server gRPC:
-```bash
-python HelloServicer.py
-```
-Server sẽ khởi động và lắng nghe các yêu cầu ở cổng `50051`.
 
 ---
 
-### 2. Gửi Yêu Cầu từ Client
-File `HelloServicer.py` cũng bao gồm client. Sau khi server được khởi động, client sẽ gửi yêu cầu "SayHello" đến server và nhận phản hồi.
+## 🐳 Bước 1: Khởi động RabbitMQ bằng Docker
 
-Client sẽ in ra thông báo như sau:
-```yaml
-Response received: Xin chào, World!
+```bash
+docker run -d --name rabbitmq \
+  -p 5672:5672 -p 15672:15672 \
+  rabbitmq:management
 ```
-![img_2.png](img_2.png)
+
+Truy cập giao diện web tại: [http://localhost:15672](http://localhost:15672)  
+Tài khoản mặc định:
+
+- Username: `guest`
+- Password: `guest`
+
 ---
 
-### 3. Lỗi thường gặp
-   - Lỗi `Port 50051 is already in use`: Kiểm tra xem cổng `50051` có đang được sử dụng không bằng cách sử dụng lệnh `netstat` hoặc khởi động lại máy tính.
-   - Lỗi không tìm thấy file `hello_pb2.py`: Đảm bảo bạn đã chạy đúng lệnh `protoc` để tạo các file Python từ file `.proto`.
+## ▶️ Bước 2: Chạy thử
+
+1. **Mở Terminal 1** → chạy `Consumer.py`
+```bash
+python Consumer.py
+```
+→ Debug: ![img.png](img.png)
+
+2. **Mở Terminal 2** → chạy `Producer.py`
+```bash
+python Producer.py
+```
+
+Bạn sẽ thấy producer gửi các thông điệp và consumer xử lý chúng ngay lập tức.
+![img_1.png](img_1.png)
+---
+
+## 📚 Tham khảo
+
+- [RabbitMQ Management UI](http://localhost:15672)
+- [pika documentation](https://pika.readthedocs.io/en/stable/)
+
+---
+
+## 🧹 Dọn dẹp
+
+Sau khi xong, bạn có thể dừng container RabbitMQ bằng:
+
+```bash
+docker stop rabbitmq && docker rm rabbitmq
+```
+
+---
+
+## 📬 Kết luận
+
+Đây là một ví dụ đơn giản giúp bạn hiểu rõ cách hoạt động của RabbitMQ trong các hệ thống phân tán. Bạn có thể mở rộng nó thành hệ thống gửi mail thực tế, xử lý nền bằng worker, hoặc tích hợp với các microservice khác.
