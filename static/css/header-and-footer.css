@@ -4,13 +4,16 @@ header
 	display: flex;
 }
 
-
 header {
-	background: linear-gradient(to top, var(--lightAccent), transparent);
-	justify-content: space-between;
-	align-items: center;
-	font-family: var(--primaryFont);
-	padding: 2.5rem 2rem;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  background: linear-gradient(to bottom, var(--lightAccent), transparent);
+  justify-content: space-between;
+  align-items: center;
+  font-family: var(--primaryFont);
+  padding: 2.5rem 2rem;
+  transition: all 0.3s ease;
 }
 
 footer {
