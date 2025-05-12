@@ -43,22 +43,83 @@ Chúng tôi đề xuất sử dụng thư viện **Celery** để giải quyết
 
 ## 2. Kế hoạch dự kiến cho bài giữa kỳ
 
-**Đề tài:** Xây dựng hệ thống bất đồng bộ gửi email xác thực tài khoản người dùng với Celery + RabbitMQ.
+**Đề tài:** Hệ Thống Phân Tán Gửi Email Bất Đồng Bộ với Celery + RabbitMQ
 
-**Bài toán:**
-- Khi người dùng đăng ký, hệ thống gửi email xác nhận.
-- Việc gửi email được chuyển sang worker Celery thực hiện nền để không làm chậm phản hồi.
+**🎯 Mục tiêu đề tài:**
+- Xây dựng một hệ thống gửi email xác nhận tài khoản người dùng bất đồng bộ sử dụng Celery và RabbitMQ, nhằm tối ưu hóa hiệu suất backend, tăng trải nghiệm người dùng và khả năng mở rộng hệ thống.
 
-**Chi tiết:**
-- Backend sử dụng Python Flask hoặc Django.
-- Task Queue: RabbitMQ.
-- Celery worker đảm nhiệm gửi email.
-- Có dashboard giám sát task (Flower hoặc Celery events).
+---
+
+**⚙️ Công nghệ sử dụng:**
+- **Backend**: Python Flask hoặc Django
+- **Task Queue**: RabbitMQ
+- **Worker**: Celery
+- **Giám sát**: Flower hoặc Celery Events
+- **Database**: PostgreSQL hoặc MySQL (tùy chọn để lưu log email)
+- **Email API**: SendGrid, Mailgun, Amazon SES (có thể cấu hình fallback)
+
+---
+
+**🧠 Ý tưởng mở rộng hệ thống:**
+1. Gửi nhiều loại email theo sự kiện người dùng
+- Xác nhận tài khoản
+- Chào mừng sau đăng ký
+- Thông báo đổi mật khẩu
+- Nhắc nhở hoàn tất hồ sơ
+- Email marketing định kỳ
+
+Mỗi loại email là một Celery task riêng biệt, có thể sử dụng task routing để phân chia worker phù hợp.
+
+---
+
+2. Sử dụng Celery Beat để lập lịch gửi email định kỳ
+- Gửi email sinh nhật mỗi ngày
+- Gửi báo cáo mỗi tuần cho admin
+- Gửi nhắc nhở sau 3 ngày đăng ký nhưng chưa kích hoạt
+
+  → Dùng `celery-beat` để định nghĩa lịch lặp lại (giống cron).
+
+---
+
+3. Hệ thống retry và log lỗi gửi email
+- Tự động retry khi gửi email thất bại (timeout, sai địa chỉ...)
+- Lưu log vào DB: trạng thái gửi, số lần retry, lỗi gặp phải
+- Flower dùng để theo dõi và giám sát các task
+
+---
+
+4. Phân phối nhiều worker theo vai trò
+- Worker 1: Gửi email ngay lập tức (real-time)
+- Worker 2: Gửi email định kỳ (qua Celery Beat)
+- Worker 3: Retry các task thất bại
+
+  → Giúp tăng hiệu suất và khả năng mở rộng theo chiều ngang.
+
+--- 
+
+5. Tích hợp gửi email đa kênh (Fallback)
+- Nếu API chính (ví dụ: SendGrid) bị lỗi → chuyển sang Mailgun hoặc Amazon SES
+- Dùng try-catch logic để chuyển kênh
+- Tăng độ tin cậy cho hệ thống gửi email
+
+---
+
+6. API theo dõi trạng thái gửi email
+- Xem email đã gửi thành công chưa, lúc nào gửi
+- Tạo trang admin hiển thị trạng thái từng email (thành công/thất bại/retry)
+- Dễ dàng kiểm tra và hỗ trợ người dùng
+
+---
+
+ 7. Hệ thống gửi email hàng loạt (Bulk Email)
+- Admin upload danh sách người dùng (CSV)
+- Celery task chia nhỏ theo batch để gửi
+- Giới hạn tốc độ gửi mỗi phút để tránh spam hoặc bị khóa API
 
 ---
 
 # Kết luận
 
-Sinh viên đề xuất đề tài: **Xây dựng hệ thống bất đồng bộ gửi email xác nhận tài khoản sử dụng Celery**.
+Sinh viên đề xuất đề tài: Hệ thống Celery + RabbitMQ không chỉ dừng lại ở gửi email xác nhận, mà có thể mở rộng thành **nền tảng gửi thông báo email mạnh mẽ, linh hoạt và chịu tải tốt**.
 
 Vấn đề giải quyết: **Tối ưu hóa hiệu suất hệ thống bằng cách xử lý các công việc nặng ở background, tăng trải nghiệm người dùng và khả năng mở rộng của hệ thống.**
