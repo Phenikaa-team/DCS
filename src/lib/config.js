@@ -20,6 +20,7 @@ export const navItems = [
 	{ title: 'System Design', route: '/system_design' },
 	{ title: 'Plan', route: '/plan' },
 	{ title: 'Infomation Exchange', route: '/information_exchange' },
-	{ title: 'Process & Flow', route: '/process&flow' }
+	{ title: 'Process & Flow', route: '/process&flow' },
+	{ title: 'Architecture', route: 'architecture' }
 ];
   
