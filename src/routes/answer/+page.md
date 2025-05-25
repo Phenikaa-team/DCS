@@ -175,27 +175,27 @@ Hệ phân tán là tập hợp các máy tính độc lập, nhưng đối vớ
 
 - **Cristian**
 
-![Cristian algorithm](/static/images/cristian.png)
+![Cristian algorithm](/images/cristian.png)
 
 - **Berkeley**
 
-![Berkeley algorithm](/static/images/berkeley.png)
+![Berkeley algorithm](/images/berkeley.png)
 
 - **RBS**
 
-![RBS algorithm](/static/images/rbs.png)
+![RBS algorithm](/images/rbs.png)
 
 - **Lamport**
 
-![Lamport algorithm](/static/images/lamport.png)
+![Lamport algorithm](/images/lamport.png)
 
 - **Bully**
 
-![Bully algorithm](/static/images/bully.png)
+![Bully algorithm](/images/bully.png)
 
 - **Ring**
 
-![Ring algorithm](/static/images/ring.png)
+![Ring algorithm](/images/ring.png)
 
 ---
 
