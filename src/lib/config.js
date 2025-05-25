@@ -21,6 +21,7 @@ export const navItems = [
 	{ title: 'Plan', route: '/plan' },
 	{ title: 'Infomation Exchange', route: '/information_exchange' },
 	{ title: 'Process & Flow', route: '/process&flow' },
+	{ title: 'Answer', route: '/answer' },
 	{ title: 'Architecture', route: 'architecture' }
 ];
   
