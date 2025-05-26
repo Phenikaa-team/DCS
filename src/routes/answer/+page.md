@@ -540,8 +540,106 @@ Những yếu tố trên đảm bảo hệ thống phân tán đạt được đ
 
 ---
 
-## **Câu 24: Không gian phẳng là gì, định danh là gì, liệt kê các đặc điểm của không gian phẳng**
+## **Câu 24. Không gian phẳng là gì, định danh là gì, liệt kê các đặc điểm của không gian phẳng**
+
+  - **1. Không gian phẳng là gì?**
+    ![KGP](/images/kgp.png)
+
+  - **2. Định danh (Identifier) là gì?**
+    ![Identifier](/images/identifier.png)
+
+  - **3. Đặc điểm chính của không gian phẳng trong hệ phân tán**
+  
+  | Đặc điểm                                | Giải thích ngắn gọn                                                                       |
+| --------------------------------------- | ----------------------------------------------------------------------------------------- |
+| **Không có cấu trúc phân cấp**        | Mỗi thực thể có ID riêng biệt, không thuộc nhóm vùng hay lớp nào.                         |
+| **Khó xác định vị trí vật lý**        | Không thể biết vị trí địa lý hoặc quan hệ mạng của node dựa vào định danh.                |
+| **Thường sử dụng DHT**                | DHT như Chord, Kademlia dùng không gian phẳng để ánh xạ khóa tới node chứa dữ liệu.       |
+| **Cần cơ chế tra cứu hiệu quả**       | Vì ID không mang thông tin vị trí, cần thuật toán để tìm đúng node (ví dụ: finger table). |
+| **Dễ mở rộng hệ thống**               | Việc thêm/bớt node không làm thay đổi cấu trúc không gian, chỉ cập nhật ánh xạ.           |
+| **Tăng tính trừu tượng và linh hoạt** | Node có thể ở bất kỳ đâu, dễ dàng thay đổi hoặc thay thế mà không ảnh hưởng toàn hệ.      |
 
 
+---
+
+## **Câu 25. Tại sao cần đồng bộ hóa đồng hồ logic, tại sao đồng hồ vật lý không đảm bảo. mục đích của đồng bộ hóa và các thuật toán đồng bộ hóa là gì?**
+
+- Tại sao cần đồng bộ hóa đồng hồ logic trong hệ phân tán?
+  - Trong hệ phân tán, mỗi tiến trình chạy trên các máy độc lập, mỗi máy có đồng hồ riêng. Vì vậy:
+
+    - Các tiến trình không chia sẻ chung đồng hồ.
+    - Không có đồng hồ toàn cục trong hệ thống.
+    - Các tiến trình giao tiếp qua mạng có độ trễ không xác định.
+
+    → Nếu không có đồng bộ, sẽ không thể xác định đúng thứ tự các sự kiện `(ví dụ: ai gửi trước, ai nhận sau)`
+
+- Tại sao đồng hồ vật lý không đủ để đảm bảo trật tự sự kiện?
+
+  | Lý do                                | Giải thích                                                                     |
+  | ------------------------------------ | ------------------------------------------------------------------------------ |
+  | ❌ **Độ lệch thời gian (clock skew)** | Mỗi máy có tốc độ đồng hồ khác nhau → thời gian trôi không đồng đều.           |
+  | ❌ **Không thể đồng bộ tuyệt đối**    | Không có cách nào để đồng bộ hoàn hảo tất cả đồng hồ vật lý trong hệ thống.    |
+  | ❌ **Độ trễ mạng biến động**          | Mạng không ổn định, độ trễ khác nhau mỗi lần gửi tin nhắn → sai lệch thứ tự.   |
+  | ❌ **Không đảm bảo quan sát thứ tự**  | Một tiến trình A gửi trước nhưng đồng hồ của B lại ghi nhận thời gian nhỏ hơn. |
+
+- Mục đích của đồng bộ hóa đồng hồ `(logical clock synchronization)`
+
+  | Mục đích chính                                   | Giải thích                                                  |
+  | ------------------------------------------------ | ----------------------------------------------------------- |
+  | ✅ **Xác định quan hệ nhân quả (happens-before)** | Biết được sự kiện nào xảy ra trước/sau.                     |
+  | ✅ **Đảm bảo thứ tự sự kiện logic**               | Đảm bảo các tiến trình thấy cùng một thứ tự sự kiện hợp lý. |
+  | ✅ **Hỗ trợ ghi log, kiểm tra lỗi**               | Dễ dàng xác định nguyên nhân lỗi hoặc xung đột.             |
+  | ✅ **Thống nhất thứ tự cập nhật dữ liệu**         | Trong cơ sở dữ liệu phân tán, giúp duy trì tính nhất quán.  |
+
+- Các thuật toán đồng bộ hóa nổi bật
+
+  | Thuật toán                      | Mục đích chính                           | Cách hoạt động                                                                  | Ghi chú                                                              |
+  | ------------------------------- | ---------------------------------------- | ------------------------------------------------------------------------------- | -------------------------------------------------------------------- |
+  | **Lamport Clock**               | Đồng bộ thứ tự logic                     | Mỗi sự kiện tăng số đếm, gửi kèm theo khi giao tiếp → max đồng hồ giữa hai bên. | Đơn giản, nhưng không phân biệt các sự kiện độc lập.                 |
+  | **Vector Clock**                | Phân biệt nhân quả rõ hơn                | Mỗi tiến trình giữ một mảng vector, ghi nhận thời gian từng tiến trình khác.    | So sánh được cả quan hệ xảy ra đồng thời.                            |
+  | **Cristian’s Algorithm**        | Gần với thời gian thực                   | Client gửi yêu cầu đồng bộ đến server có đồng hồ chuẩn.                         | Cần giả định độ trễ mạng đối xứng.                                   |
+  | **Berkeley Algorithm**          | Đồng bộ nhiều máy                        | Tính trung bình thời gian từ nhiều máy → cập nhật đồng hồ lại.                  | Không cần đồng hồ chuẩn, nhưng bị ảnh hưởng nếu có máy sai nhiều.    |
+  | **NTP (Network Time Protocol)** | Đồng bộ hóa đồng hồ vật lý trên Internet | Phân tầng máy chủ đồng hồ chuẩn, điều chỉnh sai lệch qua nhiều bước.            | Dùng trong thực tế, không hoàn toàn chính xác với độ trễ biến thiên. |
+
+---
+
+## **Câu 26. Đồng hồ Lamport giải quyết vấn đề gì, nêu và giải thích các rules của đồng hồ Lamport**
+
+  - 1. Đồng hồ Lamport giải quyết vấn đề gì?
+    - Lamport Clock giải quyết vấn đề xác định thứ tự các sự kiện trong hệ thống phân tán, nơi:
+
+      - Không có đồng hồ toàn cục.
+
+      - Mỗi tiến trình có đồng hồ riêng biệt.
+
+      - Đồng hồ vật lý có thể không đồng bộ, gây khó khăn trong việc xác định "sự kiện nào xảy ra trước".
+
+    → Lamport Clock đảm bảo tính nhân quả `(happens-before relation, ký hiệu là →)` giữa các sự kiện:
+      - Nếu một sự kiện **A** xảy ra trước sự kiện **B (A → B)**, thì Lamport Clock phải đảm bảo:
+        - **L(A) < L(B)**
+      -  Nhưng:
+        - **L(A) < L(B)** không có nghĩa là **A → B** (không đủ điều kiện để kết luận nhân quả).
+
+  - 2. Các Quy tắc (Rules) của Đồng hồ Lamport
+    - Trong hệ phân tán gồm nhiều tiến trình, mỗi tiến trình có đồng hồ logic C (số nguyên, khởi đầu từ 0).
+      
+    | Rule   | Tên quy tắc                       | Giải thích chi tiết                                                                                                                                        |
+    | ------ | --------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------- |
+    | **R1** | **Nội bộ (Internal Event)**       | Mỗi khi một tiến trình thực hiện **một sự kiện nội bộ** (ví dụ: tính toán), nó **tăng giá trị đồng hồ của mình lên 1**. <br> → `C := C + 1`                |
+    | **R2** | **Gửi tin nhắn (Send Event)**     | Khi một tiến trình **gửi một tin nhắn** đi, nó: <br> - **Tăng đồng hồ lên 1** trước khi gửi: `C := C + 1`<br> - **Đính kèm giá trị đồng hồ vào tin nhắn**. |
+    | **R3** | **Nhận tin nhắn (Receive Event)** | Khi một tiến trình nhận được tin nhắn có gắn giá trị thời gian `T` từ người gửi:<br> - **Cập nhật đồng hồ của mình**: <br> `C := max(C, T) + 1`            |
 
 
+---
+
+## **Câu 27. Tham khảo lại các bài tập của đồng hồ logic Lamport trong slides chương 4-5**
+
+---
+
+## **Câu 28. Giao thức đồng bộ NTP là gì, PTP là gì, được tính toán như thế nào?**
+
+---
+
+## **Câu 29. Review lại python cơ bản**
+
+---

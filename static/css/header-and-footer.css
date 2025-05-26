@@ -5,7 +5,7 @@ header
 }
 
 header {
-  position: sticky;
+  position: static;
   top: 0;
   z-index: 1000;
   background: linear-gradient(to bottom, var(--lightAccent), transparent);
