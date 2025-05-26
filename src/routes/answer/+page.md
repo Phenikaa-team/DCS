@@ -616,9 +616,9 @@ Những yếu tố trên đảm bảo hệ thống phân tán đạt được đ
 
     → Lamport Clock đảm bảo tính nhân quả `(happens-before relation, ký hiệu là →)` giữa các sự kiện:
       - Nếu một sự kiện **A** xảy ra trước sự kiện **B (A → B)**, thì Lamport Clock phải đảm bảo:
-        - **L(A) < L(B)**
+        - <li><strong>L(A) &lt; L(B)</strong></li>
       -  Nhưng:
-        - **L(A) < L(B)** không có nghĩa là **A → B** (không đủ điều kiện để kết luận nhân quả).
+        - <li><strong>L(A) &lt; L(B)</strong></li> không có nghĩa là **A → B** (không đủ điều kiện để kết luận nhân quả).
 
   - 2. Các Quy tắc (Rules) của Đồng hồ Lamport
     - Trong hệ phân tán gồm nhiều tiến trình, mỗi tiến trình có đồng hồ logic C (số nguyên, khởi đầu từ 0).
