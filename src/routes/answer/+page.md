@@ -605,22 +605,22 @@ Những yếu tố trên đảm bảo hệ thống phân tán đạt được đ
 
 ## **Câu 26. Đồng hồ Lamport giải quyết vấn đề gì, nêu và giải thích các rules của đồng hồ Lamport**
 
-  - 1. Đồng hồ Lamport giải quyết vấn đề gì?
-    - Lamport Clock giải quyết vấn đề xác định thứ tự các sự kiện trong hệ thống phân tán, nơi:
+- 1. **Đồng hồ Lamport giải quyết vấn đề gì?**
 
-      - Không có đồng hồ toàn cục.
+  - Lamport Clock giải quyết vấn đề xác định thứ tự các sự kiện trong hệ thống phân tán, nơi:
 
-      - Mỗi tiến trình có đồng hồ riêng biệt.
+    - Không có đồng hồ toàn cục.
+    - Mỗi tiến trình có đồng hồ riêng biệt.
+    - Đồng hồ vật lý có thể không đồng bộ, gây khó khăn trong việc xác định "sự kiện nào xảy ra trước".
 
-      - Đồng hồ vật lý có thể không đồng bộ, gây khó khăn trong việc xác định "sự kiện nào xảy ra trước".
+    → Lamport Clock đảm bảo tính nhân quả *(happens-before relation, ký hiệu là →)* giữa các sự kiện:
 
-    → Lamport Clock đảm bảo tính nhân quả `(happens-before relation, ký hiệu là →)` giữa các sự kiện:
-      - Nếu một sự kiện **A** xảy ra trước sự kiện **B (A → B)**, thì Lamport Clock phải đảm bảo:
-        - **L(A) &lt; L(B)**
+    - Nếu một sự kiện **A** xảy ra trước sự kiện **B (A → B)**, thì Lamport Clock phải đảm bảo:
+      - **L(A) &lt; L(B)**
       - Nhưng:
-        - **L(A) &lt; L(B)** không có nghĩa là **A → B** (không đủ điều kiện để kết luận nhân quả).
+      - **L(A) &lt; L(B)** không có nghĩa là **A → B** *(không đủ điều kiện để kết luận nhân quả)*.
 
-  - 2. Các Quy tắc (Rules) của Đồng hồ Lamport
+- 2. **Các Quy tắc (Rules) của Đồng hồ Lamport**
     - Trong hệ phân tán gồm nhiều tiến trình, mỗi tiến trình có đồng hồ logic C (số nguyên, khởi đầu từ 0).
       
     | Rule   | Tên quy tắc                       | Giải thích chi tiết                                                                                                                                        |
