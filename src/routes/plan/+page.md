@@ -1,77 +1,79 @@
 <svelte:head>
-	<title>Plan</title>
+	<title>Distributed Chat System</title>
 </svelte:head>
 
 ## Đề tài đề xuất
 
-**Xây dựng hệ thống xử lý tác vụ bất đồng bộ sử dụng Celery trong ứng dụng web.**
+**Xây dựng hệ thống chat phân tán sử dụng Vert.x và RabbitMQ với Kotlin**
 
 ## Mô tả vấn đề
 
-Trong các ứng dụng web hiện nay, có rất nhiều tác vụ tốn thời gian (ví dụ: gửi email, xử lý hình ảnh, tính toán nặng, lấy dữ liệu từ API ngoài...) mà nếu thực thi đồng bộ sẽ làm chậm toàn bộ hệ thống. Do đó, cần có một cơ chế để thực hiện các tác vụ này ở chế độ nền (background), đảm bảo hệ thống chính phản hồi nhanh và ổn định hơn.
+Trong các ứng dụng chat hiện đại, yêu cầu về khả năng mở rộng, hiệu suất cao và độ trễ thấp là vô cùng quan trọng. Hệ thống cần phải xử lý được lượng lớn tin nhắn đồng thời trong thời gian thực, đồng thời đảm bảo tính nhất quán dữ liệu giữa các node.
 
-Chúng tôi đề xuất sử dụng thư viện **Celery** để giải quyết vấn đề xử lý bất đồng bộ này.
+Chúng tôi đề xuất sử dụng **Vert.x** - một framework reactive đa ngôn ngữ, kết hợp với **RabbitMQ** làm message broker và viết bằng **Kotlin** để xây dựng hệ thống chat phân tán hiệu suất cao.
 
 ---
 
 # Trả lời các câu hỏi
-## 1. Mục đích của thư viện Celery
+## 1. Mục đích của kiến trúc đề xuất
 
 | **Tiêu chí**       | **Nội dung**                                                                                                                                   |
 |--------------------|------------------------------------------------------------------------------------------------------------------------------------------------|
-| **Mục đích**       | - Celery là một distributed task queue giúp xử lý các tác vụ bất đồng bộ hoặc chạy theo lịch trình.<br>- Cho phép "giao việc" cho worker.   |
-| **Giải quyết vấn đề** | - Giảm tải cho ứng dụng chính.<br>- Hỗ trợ retry khi tác vụ thất bại.<br>- Quản lý và theo dõi tiến trình công việc dễ dàng.               |
-| **Điểm mạnh**      | - Hỗ trợ nhiều backend: RabbitMQ, Redis, Amazon SQS,...<br>- Tích hợp tốt với Django, Flask, FastAPI.<br>- Hỗ trợ lập lịch (scheduling).<br>- Khả năng mở rộng và phân tán cao. |
-| **Điểm yếu**       | - Cần cài đặt/cấu hình message broker (Redis, RabbitMQ, ...).<br>- Phức tạp nếu triển khai quy mô lớn.<br>- Xử lý timeout/phục hồi task phức tạp. |
+| **Mục đích**       | - Xây dựng hệ thống chat phân tán có khả năng mở rộng ngang hàng<br>- Đảm bảo giao tiếp thời gian thực với độ trễ thấp<br>- Xử lý lượng lớn tin nhắn đồng thời |
+| **Giải quyết vấn đề** | - Phân tán tải xử lý tin nhắn<br>- Đảm bảo tính sẵn sàng cao<br>- Hỗ trợ phục hồi khi có node gặp sự cố<br>- Quản lý trạng thái người dùng phân tán |
+| **Điểm mạnh**      | - Hiệu suất cao nhờ mô hình event-loop của Vert.x<br>- Khả năng mở rộng dễ dàng<br>- Hỗ trợ đa ngôn ngữ (Kotlin/Java)<br>- Tích hợp tốt với RabbitMQ cho message queue |
+| **Điểm yếu**       | - Độ phức tạp khi triển khai hệ thống phân tán<br>- Yêu cầu hiểu biết về lập trình reactive<br>- Quản lý trạng thái phân tán phức tạp |
 
+- **So sánh với kiến trúc khác:**
 
-- **So sánh với framework/thư viện khác:**
-
-| Framework/Library | Ưu điểm so với Celery         | Nhược điểm so với Celery         |
+| Framework/Library | Ưu điểm so với Vert.x         | Nhược điểm so với Vert.x         |
 |-------------------|-------------------------------|----------------------------------|
-| RQ                | Dễ dùng hơn, nhẹ hơn           | Không mạnh và linh hoạt bằng Celery |
-| Dramatiq          | Hiệu suất cao, đơn giản hơn     | Ít tài liệu và cộng đồng nhỏ hơn   |
-| Huey              | Nhẹ, đơn giản                  | Không hỗ trợ nhiều tính năng nâng cao |
-| Sidekiq (Ruby)    | Rất mạnh với Ruby ecosystem    | Không hỗ trợ Python              |
+| Spring WebFlux    | Tích hợp tốt với Spring ecosystem | Hiệu suất thấp hơn Vert.x        |
+| Node.js           | Cộng đồng lớn, nhiều thư viện | Xử lý CPU-intensive kém hơn      |
+| Akka              | Mạnh về xử lý phân tán        | Học phí cao, phức tạp            |
+| Socket.IO         | Dễ triển khai                 | Khả năng mở rộng hạn chế         |
 
 - **Ứng dụng:**
-  - Gửi email nền.
-  - Xử lý video, hình ảnh nền.
-  - Push notification.
-  - Update dữ liệu background.
-  - Chạy job định kỳ (cron jobs).
+  - Hệ thống chat thời gian thực
+  - Notification service
+  - IoT message processing
+  - Game server
+  - Collaboration tools
 
 ## 2. Kế hoạch dự kiến cho bài giữa kỳ
 
 ## 🧠 Đề tài đề xuất
 
-**Xây dựng hệ thống xử lý ảnh/video lớn bất đồng bộ với Celery và RabbitMQ**
+**Xây dựng hệ thống chat phân tán sử dụng Vert.x, RabbitMQ và Kotlin**
 
 ---
 
 ## 📌 Mô tả vấn đề
 
-Trong các hệ thống web hiện đại, việc xử lý dữ liệu lớn như ảnh độ phân giải cao, video dung lượng lớn, hoặc file nặng thường tốn thời gian và tài nguyên, ảnh hưởng đến trải nghiệm người dùng nếu xử lý đồng bộ.
+Các hệ thống chat truyền thống thường gặp phải các vấn đề về:
+- Khả năng mở rộng khi số lượng người dùng tăng đột biến
+- Độ trễ khi xử lý tin nhắn ở các khu vực địa lý khác nhau
+- Khả năng chịu lỗi khi có server gặp sự cố
+- Đồng bộ trạng thái người dùng giữa các node
 
-Ví dụ:
-- Nén hoặc resize ảnh sau khi người dùng upload.
-- Trích xuất keyframe từ video.
-- Chuyển đổi định dạng video/ảnh.
-- Tính toán đặc trưng hình ảnh (ví dụ cho AI/ML).
-- Tạo thumbnail hoặc preview động.
-
-Vì vậy, cần một hệ thống để xử lý các tác vụ nặng này ở **chế độ nền (background)**, đảm bảo phản hồi frontend vẫn nhanh chóng.
+Giải pháp đề xuất là xây dựng hệ thống chat phân tán với các đặc điểm:
+- Mỗi node có thể xử lý độc lập một nhóm người dùng
+- Các node giao tiếp với nhau thông qua message broker
+- Tin nhắn được định tuyến thông minh đến người nhận
+- Hỗ trợ phục hồi khi có node gặp sự cố
 
 ---
 
 ## 🎯 Mục tiêu đề tài
 
-Xây dựng hệ thống xử lý ảnh/video nặng bất đồng bộ sử dụng Celery và RabbitMQ:
+Xây dựng hệ thống chat phân tán sử dụng Vert.x và RabbitMQ:
 
-- Người dùng upload ảnh/video/file → lưu tạm → đẩy task vào hàng đợi.
-- Worker thực hiện xử lý (nén, resize, trích keyframe…).
-- Lưu kết quả vào storage/database.
-- Gửi thông báo khi hoàn tất (nếu cần).
+- Người dùng kết nối đến node gần nhất
+- Tin nhắn được đẩy vào hàng đợi RabbitMQ
+- Các node xử lý và định tuyến tin nhắn
+- Đảm bảo tin nhắn đến đúng người nhận
+- Hỗ trợ phòng chat và tin nhắn riêng tư
+- Theo dõi trạng thái người dùng
 
 ---
 
@@ -79,60 +81,69 @@ Xây dựng hệ thống xử lý ảnh/video nặng bất đồng bộ sử d�
 
 | Thành phần        | Công nghệ đề xuất                                 |
 |-------------------|---------------------------------------------------|
-| Backend API       | Python + Flask / Django                          |
-| Task Queue        | Celery                                            |
-| Message Broker    | RabbitMQ hoặc Redis                               |
-| Xử lý ảnh/video   | Pillow, OpenCV, ffmpeg-python, moviepy, etc.     |
-| Storage           | FileSystem hoặc Amazon S3                        |
-| Giám sát          | Flower hoặc Celery Events                        |
+| Backend           | Vert.x (Kotlin)                                   |
+| Message Broker    | RabbitMQ                                          |
+| Protocol          | WebSocket, HTTP/2                                |
+| Serialization     | JSON/Protocol Buffers                            |
 
 ---
 
 ## 🛠️ Ý tưởng mở rộng
 
-### 1. Hệ thống xử lý ảnh
-- Tự động resize ảnh về nhiều kích thước (thumbnail, medium, full).
-- Tự động nén để giảm dung lượng.
-- Chuyển định dạng (PNG → JPG…).
-- Detect ảnh lỗi hoặc sai định dạng.
+### 1. Kiến trúc phân tán
+- Tự động cân bằng tải giữa các node
+- Service discovery cho các node mới
+- Replication dữ liệu giữa các node
 
-### 2. Xử lý video
-- Trích xuất ảnh đại diện từ video (thumbnail, keyframe).
-- Cắt video theo khoảng thời gian.
-- Chuyển đổi định dạng video (mp4 → webm...).
-- Nén video hoặc thay đổi độ phân giải.
+### 2. Tính năng chat
+- Phòng chat nhóm
+- Tin nhắn riêng tư
+- Lịch sử tin nhắn
+- Thông báo khi online/offline
 
-### 3. Theo dõi tiến trình xử lý
-- API lấy trạng thái file: đang xử lý, đã xử lý, lỗi.
-- Kết hợp WebSocket hoặc polling để cập nhật trạng thái cho người dùng.
+### 3. Bảo mật
+- Xác thực người dùng
+- Mã hóa tin nhắn đầu cuối
+- Rate limiting
+- Bảo vệ DDoS
 
-### 4. Tích hợp retry khi xử lý lỗi
-- Worker tự động thử lại nếu xử lý thất bại (mất kết nối, lỗi file…).
-- Ghi log lỗi vào DB để giám sát.
+### 4. Monitoring
+- Theo dõi hiệu năng hệ thống
+- Cảnh báo khi quá tải
+- Log tập trung
 
-### 5. Tải lên file lớn
-- Hỗ trợ upload chia nhỏ (chunk upload) nếu cần.
-- Giao diện xử lý upload + chờ xử lý (UX tốt hơn).
+### 5. Tối ưu hiệu suất
+- Cluster Vert.x
+- Tuning RabbitMQ
+- Caching thông tin người dùng
+- Nén tin nhắn
 
 ---
 
-## 🔁 Lịch trình xử lý định kỳ
+## 🔁 Lưu lượng hệ thống
 
-- Dùng Celery Beat để xử lý lại các file chưa hoàn tất sau một khoảng thời gian.
-- Dọn dẹp các file tạm/lỗi sau 24 giờ.
+1. Người dùng kết nối qua WebSocket đến node gần nhất
+2. Node xác thực và lưu trạng thái người dùng
+3. Khi gửi tin nhắn:
+   - Tin nhắn được đẩy vào RabbitMQ
+   - Node nhận xử lý và định tuyến
+   - Nếu người nhận ở node khác, tin nhắn được chuyển tiếp
+4. Đảm bảo thứ tự tin nhắn
 
 ---
 
 ## 🔒 Bảo mật và hiệu suất
 
-- Giới hạn định dạng, dung lượng file upload.
-- Sử dụng hàng đợi để phân phối đều cho worker, tránh nghẽn cổ chai.
-- Hạn chế người dùng thực hiện quá nhiều upload cùng lúc (rate limit).
+- Xác thực JWT cho mỗi kết nối
+- Giới hạn kích thước tin nhắn
+- Rate limiting theo người dùng
+- Mã hóa kênh truyền TLS
+- Giám sát tài nguyên hệ thống
 
 ---
 
 ## ✅ Kết luận
 
-**Hệ thống Celery + RabbitMQ** không chỉ giúp tối ưu hiệu suất mà còn có thể mở rộng thành nền tảng xử lý ảnh/video mạnh mẽ, linh hoạt, hỗ trợ nhiều công nghệ backend hiện đại.
+**Hệ thống Vert.x + RabbitMQ + Kotlin** cung cấp nền tảng lý tưởng cho hệ thống chat phân tán hiệu suất cao, có khả năng mở rộng và chịu lỗi tốt. Kiến trúc reactive giúp xử lý hàng trăm nghìn kết nối đồng thời với tài nguyên tối thiểu.
 
-**Vấn đề giải quyết:** Tối ưu hóa xử lý các công việc nặng (image/video processing), giảm tải cho backend, tăng trải nghiệm người dùng và khả năng mở rộng hệ thống.
+**Vấn đề giải quyết:** Xây dựng hệ thống chat có khả năng mở rộng ngang hàng, độ trễ thấp, đảm bảo tính sẵn sàng cao và trải nghiệm người dùng mượt mà.
